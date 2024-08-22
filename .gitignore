@@ -4,3 +4,9 @@
 *.hdf5
 *.txt
 *.mp4
+*.png
+*.db
+*.h5
+*.ini
+*.npy
+*.bias
