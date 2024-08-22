@@ -71,7 +71,7 @@ $$R_{evs} = R \cdot R_{rgb}$$
 
 $$T_{evs} = R \cdot T_{rgb} + T \cdot s$$
 
-$R_{xxx}, T_{xx}$ are the rotation and translation for the respective cameras. $s$ is a scaler in *colmap_scale.txt*
+$R_{xxx}, T_{xxx}$ are the rotation and translation for the respective cameras. $s$ is a scaler in *colmap_scale.txt*
 
 # Camera intrinsics reminder
 The event camera intrinsics can be can be found in:
