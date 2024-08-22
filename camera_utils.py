@@ -207,12 +207,3 @@ def make_camera_json(ext_mtx, intr_mtx, dist, img_size):
     }
 
     return new_camera
-
-
-if __name__ == "__main__":
-    colcam_path = "/ubc/cs/research/kmyi/matthew/backup_copy/raw_real_ednerf_data/Videos/calib_checker_recons/sparse/0/cameras.bin"
-    img_f = "/ubc/cs/research/kmyi/matthew/projects/ed-nerf/data/black_seoul_b3_v3/colcam_set/rgb/1x/00000.png"
-    K, D = read_colmap_cam_param(colcam_path)
-    img = cv2.imread(img_f)
-    undist = undistort_image(img, K, D)
-    
