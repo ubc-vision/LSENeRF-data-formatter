@@ -173,9 +173,9 @@ class ColmapCamera:
 
 class ColmapSceneManager:
     """
-    retrieves corresponding 3d points and plot them in 3d
+    Colmap scene manager
     """
-    def __init__(self, colmap_dir, sample_method="reliable"):
+    def __init__(self, colmap_dir):
         """
         colmap_dir = xxx_recons/
                          /images
@@ -279,6 +279,9 @@ class ColmapSceneManager:
 
 
 class ColcamSceneManager:
+    """
+    scene manager for formatted colcam set (rgb)
+    """
 
     def __init__(self, data_dir):
         """
@@ -352,6 +355,9 @@ class ColcamSceneManager:
 
 
 class EcamSceneManager(ColcamSceneManager):
+    """
+    scene manager for formatted ecam set (evs)
+    """
     def __init__(self, data_dir):
         self.data_dir = data_dir
         self.cam_fs = sorted(glob.glob(osp.join(self.data_dir, "camera", "*.json")))
