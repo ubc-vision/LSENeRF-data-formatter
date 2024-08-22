@@ -2,7 +2,6 @@
 *.bin
 *.json
 *.hdf5
-*.txt
 *.mp4
 *.png
 *.db
@@ -11,3 +10,5 @@
 *.npy
 *.bias
 *.pyc
+
+raw_data/*
