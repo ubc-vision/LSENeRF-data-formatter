@@ -91,6 +91,35 @@ class EventBuffer:
     def valid_time(self, st_t):
         return st_t < self.t_f[-1]
 
+
+def load_json_intr(cam_f):
+    """
+    load formatted intrinsics, returns K, dist
+    """
+    with open(cam_f, "r") as f:
+        data = json.load(f)
+        fx = fy = data["focal_length"]
+        cx, cy = data["principal_point"]
+        k1, k2, k3 = data["radial_distortion"]
+        p1, p2 = data["tangential_distortion"]
+    
+    return np.array([[fx, 0, cx],
+                    [0,   fy, cy],
+                    [0, 0, 1]]), (k1,k2,p1,p2)
+
+def load_json_extr(cam_f):
+    """
+    load formatted extrinsics returns 3x4 extrinsics matrix
+    """
+    with open(cam_f, "r") as f:
+        data = json.load(f)
+        R, pos = np.array(data["orientation"]), np.array(data["position"])
+        t = -(pos@R.T).T
+        t = t.reshape(-1,1)
+    
+    return np.concatenate([R, t], axis=-1)
+
+
 def read_rel_cam(cam_rel_path):
     with open(cam_rel_path, "r") as f:
         data = json.load(f)
