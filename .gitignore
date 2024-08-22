@@ -10,3 +10,4 @@
 *.ini
 *.npy
 *.bias
+*.pyc
