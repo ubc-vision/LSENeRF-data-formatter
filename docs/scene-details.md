@@ -17,7 +17,7 @@ We first go through the scene folder. An example is just the `Bag' directory obt
     - raw_image_<number>.raw # raw image, <number> is timestamp in nano seconds
     ....
 - bias.bias             # bias file from prophesee. see prophesee for details
-- cam_ts.npy            # provided camera pose times
+- cam_ts.npy            # camera pose times for evs_cams.npy and rgb_cams.npy.
 - dataset.json          # train, val split for RGB AFTER formatting; unregistered images are excluded
 - end_triggers.txt      # triggers for when camera shutter closes
 - events.h5             # events saved with keys (x,y,t,p); p=1 is positive, p=0 is negative
@@ -25,6 +25,8 @@ We first go through the scene folder. An example is just the `Bag' directory obt
 - rgb_cams.npy          # (n, 4, 4) world to camera matrixes for RGB camera
 - st_triggers.txt       # triggers for when camera shutter opens
 ```
+Special note:
+- Only len(cam_ts) number of RGB and Event cameras starting from the beginning are inside the event camera filming time. The extra cameras are cameras after the event camera finished filming
 
 # Extra json files
 We provide two other files for event camera intrinsics and relative extrinsics between the rgb and event camera
