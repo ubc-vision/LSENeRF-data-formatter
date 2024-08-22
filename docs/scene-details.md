@@ -31,7 +31,7 @@ We provide two other files for event camera intrinsics and relative extrinsics b
 - ecam_intrinsics.json
 
 This file contains the intrinsics used for the event camera. We use the OpenCV camera model. We provide the meaning of useful key here:
-```json
+```
 {
     ...
     "image_size": (width, height),
@@ -49,7 +49,7 @@ The relative extrinsics are provided in:
 - rel_extrinsics.json
 
 The meaning of the keys are:
-```json
+```
 {
     "M2": (3x3) event camera intrinsics; same as in ecam_intrinsics.json,
     "dist1": event camera distortion; same as in ecam_intrinsics,
