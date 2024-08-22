@@ -7,42 +7,8 @@ from tqdm import tqdm
 import shutil
 import json
 
-from nerfies_camera import NerfiesCamera
 from scene_managers import LLFFRGBManager, LLFFEVSManager
-
-
-
-def make_nerfies_camera(ext_mtx, intr_mtx, dist, img_size):
-    """
-    input:
-        ext_mtx (np.array): World to cam matrix - shape = 4x4
-        intr_mtx (np.array): intrinsic matrix of camera - shape = 3x3
-        img_size [h, w] (list/tupple): size of image
-
-    return:
-        nerfies.camera.Camera of the given mtx
-    """
-    R = ext_mtx[:3,:3]
-    t = ext_mtx[:3,3]
-    k1, k2, p1, p2 = dist
-    coord = -R.T@t  
-    h, w = img_size
-
-    cx, cy = intr_mtx[:2,2].astype(int)
-
-    new_camera = NerfiesCamera(
-        orientation=R,
-        position=coord,
-        focal_length=intr_mtx[0,0],
-        pixel_aspect_ratio=1,
-        principal_point=np.array([cx, cy]),
-        radial_distortion=(k1, k2, 0),
-        tangential_distortion=(p1, p2),
-        skew=0,
-        image_size=np.array([w, h])  ## (width, height) of camera
-    )
-
-    return new_camera
+from utils import make_nerfies_camera
 
 def format_rgb_cameras(rgbScene:LLFFRGBManager, save_dir):
 

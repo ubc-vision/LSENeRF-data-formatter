@@ -5,8 +5,13 @@ import os
 import bisect
 import h5py
 import json
+import os.path as osp
+import glob
 
+from nerfies_camera import NerfiesCamera
 import colmap_read_model as read_model
+
+get_img_ids = lambda img_dir : [osp.basename(f).split(".")[0] for f in sorted(glob.glob(osp.join(img_dir, "*.png")))]
 
 class EventBuffer:
     def __init__(self, ev_f) -> None:
@@ -273,3 +278,81 @@ def load_poses_bounds(path):
 
     # shapes = (3,5,n), (2,n), (3,n)
     return poses, bds, hwf
+
+
+def make_nerfies_camera(ext_mtx, intr_mtx, dist, img_size):
+    """
+    input:
+        ext_mtx (np.array): World to cam matrix - shape = 4x4
+        intr_mtx (np.array): intrinsic matrix of camera - shape = 3x3
+        img_size [h, w] (list/tupple): size of image
+
+    return:
+        nerfies.camera.Camera of the given mtx
+    """
+    R = ext_mtx[:3,:3]
+    t = ext_mtx[:3,3]
+    k1, k2, p1, p2 = dist
+    coord = -R.T@t  
+    h, w = img_size
+
+    cx, cy = intr_mtx[:2,2].astype(int)
+
+    new_camera = NerfiesCamera(
+        orientation=R,
+        position=coord,
+        focal_length=intr_mtx[0,0],
+        pixel_aspect_ratio=1,
+        principal_point=np.array([cx, cy]),
+        radial_distortion=(k1, k2, 0),
+        tangential_distortion=(p1, p2),
+        skew=0,
+        image_size=np.array([w, h])  ## (width, height) of camera
+    )
+
+    return new_camera
+
+
+def create_and_write_camera_extrinsics(extrinsic_dir, cams, time_stamps, intr_mtx, dist, img_size, scale=None, ret_cam=False, transform=None, n_zeros=6):
+    """
+    create the extrinsics and save it
+    scale: float = scale to resize image by; will apply to camera
+    """
+    os.makedirs(extrinsic_dir, exist_ok=True)
+
+    # if len(glob.glob(osp.join(extrinsic_dir, "*.json"))) == len(cams):
+    #     return
+
+    cameras = []
+    for i, (ecam,t) in enumerate(zip(cams, time_stamps)):
+        camera = make_nerfies_camera(ecam, intr_mtx, dist, img_size, transform=transform)
+        if scale is not None:
+           camera = camera.scale(scale)
+
+        cameras.append(camera)
+        targ_cam_path = osp.join(extrinsic_dir, str(i).zfill(n_zeros) + ".json")
+        print("saving to", targ_cam_path)
+        cam_json = camera.to_json()
+        cam_json["t"] = float(t)
+        with open(targ_cam_path, "w") as f:
+            json.dump(cam_json, f, indent=2)
+
+    if ret_cam:
+        return cameras
+
+
+def load_evimo_frame_data(img_npz_f, ret_id=False, prefix=None, idxs=None):
+    img_npz = np.load(img_npz_f)
+    classical_ids = sorted(list(img_npz.keys()))
+
+    if (prefix is not None) and (idxs is not None):
+        classical_ids = [f"{prefix}_{idx}" for idx in idxs]
+
+
+    imgs = parallel_map(lambda x : img_npz[x], classical_ids, show_pbar=True, desc="loading rgb imgs")
+    imgs = [x.astype(imgs[0].dtype) for x in imgs]
+
+    if ret_id:
+        return imgs, classical_ids
+    
+    return imgs
