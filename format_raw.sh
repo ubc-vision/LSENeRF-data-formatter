@@ -1,11 +1,20 @@
+
+### INPUT ###
+
+# path to scene directory downloaded
 WORK_DIR="raw_data/Bag"
+
+# path to event camera intrinsics
 PROPHESEE_CAM_F="raw_data/ecam_intrinsics.json"
+
+# path to relative extrinsics between the rgb and event camera
 REL_CAM_F="raw_data/rel_extrinsics.json"
+### INPUT END###
 
 TMP_OUT="tmp"
 OUT_DIR="formatted_data/$(basename $WORK_DIR)"
 
-# N_BINS=4
+
 DELTA_T=5000 # in microseconds; None to turn off and use N_BINS instead
 
 
@@ -21,5 +30,5 @@ python format_raw_step1.py --work_dir "$WORK_DIR" \
 python format_raw_step2.py --src_dir "$TMP_OUT" \
                            --targ_dir "$OUT_DIR"
 
-# Step 3: generate corresponding ecam dataset
+# Step 3: generate corresponding ecam dataset.json
 python update_dataset.py --dataset_dir "$OUT_DIR"
