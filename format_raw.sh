@@ -1,0 +1,25 @@
+WORK_DIR="raw_data/Bag"
+PROPHESEE_CAM_F="raw_data/ecam_intrinsics.json"
+REL_CAM_F="raw_data/rel_extrinsics.json"
+
+TMP_OUT="tmp"
+OUT_DIR="formatted_data/$(basename $WORK_DIR)"
+
+# N_BINS=4
+DELTA_T=5000 # in microseconds; None to turn off and use N_BINS instead
+
+
+# Step 1: Format raw data to llff format (intermediate format)
+python format_raw_step1.py --work_dir "$WORK_DIR" \
+                           --targ_dir "$TMP_OUT" \
+                           --delta_t "$DELTA_T" \
+                           --prophesee_cam_f "$PROPHESEE_CAM_F" \
+                            --rel_cam_f "$REL_CAM_F"
+
+
+# Step 2: Format llff data to final format
+python format_raw_step2.py --src_dir "$TMP_OUT" \
+                           --targ_dir "$OUT_DIR"
+
+# Step 3: generate corresponding ecam dataset
+python update_dataset.py --dataset_dir "$OUT_DIR"
