@@ -11,4 +11,4 @@
 *.bias
 *.pyc
 
-raw_data/*
+lse_raw_data/*
