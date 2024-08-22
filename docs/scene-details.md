@@ -65,7 +65,7 @@ To be specific, considering a rgb world to camera matrix (3x4)
 
 $$[R_{rgb} | T_{rgb}]$$
 
-The event camera extrinsics can be obtained by:
+The event camera extrinsics can be obtained using $R, T$ in rel_extrinsics.json by:
 
 $$R_{evs} = R \cdot R_{rgb}$$
 
