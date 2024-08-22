@@ -92,19 +92,6 @@ def main():
         assert osp.exists(src_dataset_f), f"{src_dataset_f} does not exist"
         shutil.copy(src_dataset_f, dst_dataset_f)
 
-        ## copy cameras
-        # rgb_cam_dir = osp.join(DATASET_DIR, ori_name, "colcam_set", "camera")
-        # dst_rgb_cam_dir = osp.join(DST_DIR, paper_name, "rgb_camera")
-        # assert osp.exists(rgb_cam_dir), f"{rgb_cam_dir} does not exist"
-        # shutil.copytree(rgb_cam_dir, dst_rgb_cam_dir)
-
-        # evs_cam_dir = osp.join(DATASET_DIR, ori_name, "ecam_set", "prev_camera")
-        # dst_evs_cam_dir = osp.join(DST_DIR, paper_name, "evs_camera")
-        # assert osp.exists(evs_cam_dir), f"{evs_cam_dir} does not exist"
-        # shutil.copytree(evs_cam_dir, dst_evs_cam_dir)
-
-        # assert 0
-
 
 if __name__ == "__main__":
     main()
