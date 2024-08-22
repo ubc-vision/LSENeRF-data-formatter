@@ -1,10 +1,8 @@
 import numpy as np
 import os.path as osp
 import os
-import glob
 import cv2
 import argparse
-import glob
 from tqdm import tqdm
 import shutil
 import json
