@@ -44,18 +44,18 @@ def change_evs_dataset(manager:EcamSceneManager, train_rgb_ts, t_gap=30000):
 def main():
     # scene_dir = "/ubc/cs/research/kmyi/matthew/projects/ed-nerf/data_abl/dragon_max_v9_c2_10000"
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scene_dir", type=str, required=True, help="path to formatted scene directory")
+    parser.add_argument("--dataset_dir", type=str, required=True, help="path to formatted scene directory")
     parser.add_argument("--t_gap", type=int, default=30000, help="window of events for each rgb frame in microsec")
     args = parser.parse_args()
 
-    scene_dir = args.scene_dir
+    scene_dir = args.dataset_dir
     colcam_dir = osp.join(scene_dir, "colcam_set")
     ecam_dir = osp.join(scene_dir, "ecam_set")
 
     colcam = ColcamSceneManager(colcam_dir)
     ecam = EcamSceneManager(ecam_dir)
 
-    print("updating colcam dataset")
+    print("updating ecam dataset")
     train_rgb_ts = colcam.get_train_ts()  # for updating evs dataset.json
     change_evs_dataset(ecam, train_rgb_ts, t_gap=args.t_gap)
 
