@@ -207,3 +207,34 @@ def make_camera_json(ext_mtx, intr_mtx, dist, img_size):
     }
 
     return new_camera
+
+def create_interpolated_cams(interp_ts, ctrl_ts, ctrl_extrns):
+    """
+    input:
+        interp_ts (np.array): ts to be interpolated
+        ctrl_ts (np.array): control point times
+        ctrl_extrns (np.array): control point extrinsics
+
+    returns:
+        ecams_int (np.array): interpolated extrinsic positions
+    """
+
+    def split_extrnx(w2cs):
+        Rs = w2cs[:,:3,:3]
+        ts = w2cs[:,:3, 3]
+        return Rs, ts
+    
+    Rs, ts = split_extrnx(ctrl_extrns)
+    cam_spline = CameraSpline(ctrl_ts, Rs, ts)
+    # cam_spline = LanczosSpline(triggers, Rs, ts)
+    int_ts, int_Rs =  cam_spline.interpolate(interp_ts)
+
+    if len(int_ts.shape) == 2:
+        int_ts = int_ts[..., None]
+    
+    int_cams = np.concatenate([int_Rs, int_ts], axis=-1)
+    bot = np.zeros((4,))
+    bot[-1] = 1
+    bot = bot[None, None]
+    int_cams = np.concatenate([int_cams, np.concatenate([bot]*len(int_cams))], axis = -2)
+    return int_cams
