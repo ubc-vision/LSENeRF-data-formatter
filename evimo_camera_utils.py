@@ -124,17 +124,6 @@ def apply_transform(T_cb, T_ba):
     return np.concatenate([R_ca.as_matrix(), t_ca.reshape(3,1)], axis=1)
     
 
-# Invert an SE(3) transform
-# def inv_transform(T_ba):
-#     T_ba = to_evimo_fmt(T_ba)
-#     R_ba = Rotation.from_quat(T_ba[3:7])
-#     t_ba = T_ba[0:3]
-
-#     R_ab = R_ba.inv()
-#     t_ab = -R_ba.inv().as_matrix() @ t_ba
-
-#     return np.concatenate([R_ab.as_matrix(), t_ab.reshape(3,1)], axis=1)
-
 def inv_transform(T_ba):
     T_ba = to_evimo_fmt(T_ba)
     mtx = np.eye(4)
