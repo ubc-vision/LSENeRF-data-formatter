@@ -7,6 +7,7 @@ import cv2
 from camera_utils import poses_to_w2cs_hwf
 from utils import parallel_map
 import colmap_read_model as read_model
+from utils import load_json_intr, load_json_extr
 
 def load_poses_bounds(path):
     poses_arr = np.load(path)
@@ -275,3 +276,104 @@ class ColmapSceneManager:
         cond = np.zeros(n_size, dtype=bool)
         cond[keys] = True
         return cond
+
+
+class ColcamSceneManager:
+
+    def __init__(self, data_dir):
+        """
+        expect: xxx/colcam_set
+        """
+        self.data_dir = data_dir
+        self.dataset_json_f = osp.join(self.data_dir, "dataset.json")
+        self.img_fs = sorted(glob.glob(osp.join(data_dir, "rgb", "1x", "*.png")))
+
+        with open(self.dataset_json_f, "r") as f:
+            self.dataset = json.load(f)
+            if self.dataset.get("ids") is None:
+                self.img_ids = list(range(len(self.img_fs)))
+            else:
+                self.img_ids = [int(e) for e in self.dataset["ids"]]
+            self.train_ids = [int(e) for e in self.dataset["train_ids"]]
+            self.val_ids = [int(e) for e in self.dataset["val_ids"]]
+    
+
+        self.img_fs = [self.img_fs[e] for e in self.img_ids if e < len(self.img_fs)]
+
+        self.cam_fs = sorted(glob.glob(osp.join(self.data_dir, "camera", "*.json")))
+        self.img_shape = self.get_img(0).shape[:2]
+        self.ts = self.load_ts(self.cam_fs)
+        self.image_ids = list(range(len(self.img_fs)))
+    
+    def get_img(self, idx):
+        return cv2.imread(self.img_fs[idx])
+
+    def load_image(self, idx):
+        return self.get_img(idx)
+
+    def get_intrnxs(self):
+        return load_json_intr(self.cam_fs[0])
+    
+    def load_ts(self, cam_fs):
+        ts = []
+        for i, cam_f in enumerate(cam_fs):
+            with open(cam_f, "r") as f:
+                data = json.load(f)
+                if data.get("t") is None:
+                    print("WARNING: NO TIMESTAMP AVAILABLE")
+                    return None
+
+                try:
+                    ts.append(data["t"])
+                except Exception as e:
+                    print(e)
+                    print(osp.basename(cam_f), f"does not have t. frame: {i + 1}/{len(cam_fs)}. Replacing with last t")
+                    ts.append(ts[-1])
+        
+        return np.array(ts)
+
+    def get_extrnxs(self, idx):
+        """
+        returns world to cam
+        """
+        return load_json_extr(self.cam_fs[idx])
+    
+    def get_all_extrnxs(self):
+        return np.stack([load_json_extr(e) for e in self.cam_fs[:self.__len__()]])
+    
+    def get_val_extrnxs(self):
+        return np.stack([load_json_extr(self.cam_fs[e]) for e in self.val_ids])
+
+    def __len__(self):
+        return min(len(self.cam_fs), len(self.img_fs))
+    
+    def get_train_ts(self):
+        return self.ts[sorted(list(map(int, self.train_ids)))]
+
+
+class EcamSceneManager(ColcamSceneManager):
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
+        self.cam_fs = sorted(glob.glob(osp.join(self.data_dir, "camera", "*.json")))
+        self.eimgs = np.load(osp.join(self.data_dir, "eimgs", "eimgs_1x.npy"), "r")
+
+        self.dataset_json_f = osp.join(self.data_dir, "dataset.json")
+        prev_cam_dir = osp.join(self.data_dir, "prev_camera")
+        if osp.exists(prev_cam_dir):
+            self.prev_cam_fs = sorted(glob.glob(osp.join(prev_cam_dir, "*.json")))
+            self.next_cam_fs = sorted(glob.glob(osp.join(self.data_dir, "next_camera", "*.json")))
+            self.prev_ts = self.load_ts(self.prev_cam_fs)
+            self.next_ts = self.load_ts(self.next_cam_fs)
+            self.ts = self.prev_ts
+        else:
+            self.ts = self.load_ts(self.cam_fs)  # this one is slightly meaningless
+        
+        if not osp.exists(osp.join(self.data_dir, "camera")):
+            self.cam_fs = self.prev_cam_fs
+
+    def __len__(self):
+        return min(len(self.cam_fs), len(self.eimgs))
+
+    def get_img(self, idx):
+        img = np.stack([(self.eimgs[idx] != 0).astype(np.uint8) * 255]*3, axis=-1)
+        return img
