@@ -51,10 +51,12 @@ The relative extrinsics are provided in:
 The meaning of the keys are:
 ```
 {
+    ...
     "M2": (3x3) event camera intrinsics; same as in ecam_intrinsics.json,
     "dist1": event camera distortion; same as in ecam_intrinsics,
     "R": relative rotation from RGB camera-> Event camera,
     "T": relative translation from RGB camera -> Event camera
+    ...
 }
 ```
 To be specific, considering a rgb world to camera matrix (3x4)
