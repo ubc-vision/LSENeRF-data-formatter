@@ -62,10 +62,13 @@ The meaning of the keys are:
 }
 ```
 To be specific, considering a rgb world to camera matrix (3x4)
+
 $$[R_{rgb} | T_{rgb}]$$
 
 The event camera extrinsics can be obtained by:
+
 $$R_{evs} = R \cdot R_{rgb}$$
+
 $$T_{evs} = R \cdot T_{rgb} + T\cdot s$$
 
 $R_*, T_*$ are the rotation and translation for the cameras. $s$ is a scaler in *colmap_scale.txt*
