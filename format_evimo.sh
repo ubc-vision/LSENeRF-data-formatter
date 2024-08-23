@@ -1,10 +1,10 @@
 
 ######### INPUT #########
 # source directory for rgb camera
-RGB_SRC_DIR="/ubc/cs/research/kmyi/matthew/backup_copy/raw_real_ednerf_data/evimo2_v2_data/npz/flea3_7/sanity/depth_var/depth_var_1_lr_000000"
+RGB_SRC_DIR="evimo2_v2_data/npz/flea3_7/sfm/train/scene7_00_000001"
 
 # source directory for event camera
-EVS_SRC_DIR="/ubc/cs/research/kmyi/matthew/backup_copy/raw_real_ednerf_data/evimo2_v2_data/npz/samsung_mono/sanity/depth_var/depth_var_1_lr_000000"
+EVS_SRC_DIR="evimo2_v2_data/npz/samsung_mono/sfm/train/scene7_00_000001"
 
 # save directory
 OUT_DIR="formatted_data/$(basename $RGB_SRC_DIR)"
