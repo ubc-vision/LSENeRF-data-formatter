@@ -19,7 +19,7 @@ bash format_raw.sh
    1. The NPZ extrinsics overlay is camera transform for camera -> rig, the rig is equivalent to world
 3. Extract NPZ extrinsics overlay from 2. on top of the NPZ dataset so that *dataset_extrinsics.npz* is available in the dataset scene folders
 4. Fill the neccessary fields in `format_evimo.sh`
-5. Format a scene in our dataset with
+5. Format a scene in the evimovs dataset with
 ```bash
 bash format_evimo.sh
 ```
