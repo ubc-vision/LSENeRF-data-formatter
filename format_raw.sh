@@ -1,11 +1,12 @@
-
+#!/bin/bash
+set -e
 ############################################# INPUT #############################################
 
 # path to scene directory downloaded
 WORK_DIR="lse_raw_data/Dragon Max"
 
 # path to output directory
-OUT_DIR="formatted_data/$(basename $WORK_DIR)"
+OUT_DIR="formatted_data/$(basename "$WORK_DIR")"
 
 # path to event camera intrinsics
 PROPHESEE_CAM_F="lse_raw_data/ecam_intrinsics.json"
@@ -14,6 +15,7 @@ PROPHESEE_CAM_F="lse_raw_data/ecam_intrinsics.json"
 REL_CAM_F="lse_raw_data/rel_extrinsics.json"
 ############################################# INPUT END ###########################################
 
+# path to temporary output
 TMP_OUT="tmp"
 
 
