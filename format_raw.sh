@@ -38,4 +38,5 @@ python format_raw_step2.py --src_dir "$TMP_OUT" \
 python update_dataset.py --dataset_dir "$OUT_DIR"
 
 # step 4: clean up temporary output
+echo removing temporary outputs
 rm -rf "$TMP_OUT"
