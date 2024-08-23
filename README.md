@@ -4,6 +4,9 @@ This repo contains the code to format the data in the paper xxx
 ## downloaded files details
 For details of the data just download, see [here](docs/scene-details.md)
 
+## preliminaries
+Make an environment with the packages in *requirements.txt* installed
+
 ## formating LSENeRF dataset
 To format a scene in our dataset:
 1. Download *ecam_intrinsics.json*, *rel_extrinsics* and a scene from xxx
