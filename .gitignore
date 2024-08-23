@@ -1,6 +1,5 @@
 *.raw
 *.bin
-*.json
 *.hdf5
 *.mp4
 *.png
@@ -12,3 +11,5 @@
 *.pyc
 
 lse_raw_data/*
+formatted_data/*
+tmp/*
