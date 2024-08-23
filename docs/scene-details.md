@@ -10,6 +10,7 @@ We first go through the scene folder. An example is just the `Bag' directory obt
     - sparse            # colmap sparse reconstruction, see colmap for details
         - 0
             - camera.bin   # RGB camera intrinsics; readable with colmap_read_model.read_cameras_binary 
+            - images.bin   # RGB camera extrinsics
             ...
     - colmap_scale.txt  # colmap scale (colmap unit/cm); see below and sec4 Camera pose. of paper for details
     - database.db       # colmap database; see colmap for details
