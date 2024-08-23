@@ -12,3 +12,14 @@ To format our dataset:
 ```bash
 bash format_raw.sh
 ```
+
+## formatting EVIMOv2 dataset
+1. Download the NPZ datatset [here](https://better-flow.github.io/evimo/download_evimo_2.html)
+2. Download NPZ extrinsics overlay [here](https://better-flow.github.io/evimo/npz_extrinsics.zip). This is available on the same page as 1.
+   1. The NPZ extrinsics overlay is camera transform for camera -> rig
+3. Extract NPZ extrinsics overlay from 2. on top of the NPZ dataset so that *dataset_extrinsics.npz* is available in the dataset scene folders
+4. Fill the neccessary fields in `format_evimo.sh`
+5. Format the dataset with
+```bash
+bash format_evimo.sh
+```
