@@ -14,7 +14,7 @@ bash format_raw.sh
 ```
 
 ## formatting EVIMOv2 dataset
-1. Download the NPZ datatset [here](https://better-flow.github.io/evimo/download_evimo_2.html)
+1. Download the flea3_7 and samsung_mono NPZ datatset [here](https://better-flow.github.io/evimo/download_evimo_2.html)
 2. Download NPZ extrinsics overlay [here](https://better-flow.github.io/evimo/npz_extrinsics.zip). This is available on the same page as 1.
    1. The NPZ extrinsics overlay is camera transform for camera -> rig
 3. Extract NPZ extrinsics overlay from 2. on top of the NPZ dataset so that *dataset_extrinsics.npz* is available in the dataset scene folders
