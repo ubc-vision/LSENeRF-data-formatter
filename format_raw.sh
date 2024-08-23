@@ -2,7 +2,7 @@
 set -e
 ############################################# INPUT #############################################
 
-# path to scene directory downloaded
+# path to scene directory downloaded; recommended to have the path inside ""
 WORK_DIR="lse_raw_data/Dragon Max"
 
 # path to output directory
