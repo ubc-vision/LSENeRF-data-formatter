@@ -6,7 +6,7 @@ import bisect
 import h5py
 import json
 import os.path as osp
-import glob
+import cv2
 
 from nerfies_camera import NerfiesCamera
 import colmap_read_model as read_model
@@ -354,3 +354,15 @@ def load_evimo_frame_data(img_npz_f, ret_id=False, prefix=None, idxs=None):
         return imgs, classical_ids
     
     return imgs
+
+
+def raw_to_rgb(raw_f, k=2.2, b=65536):
+    H, W = 1080, 1440
+    with open(raw_f, "rb") as f:
+      img_data = np.frombuffer(f.read(), np.uint16, H*W).reshape(H, W)
+      img = cv2.cvtColor(img_data, cv2.COLOR_BAYER_BG2BGR)
+    
+    img = (img.astype(np.float32)/b)**(1/k)
+    img = (np.clip(img, 0, 1)*255).astype(np.uint8)
+
+    return img
