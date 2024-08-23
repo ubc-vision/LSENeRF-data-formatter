@@ -27,3 +27,5 @@ Note that only these EVIMOv2 scenes are supported (see the evimov2_dataset direc
 - depth_var_1_lr_000000
 - scene7_00_000001
 - scene8_01_000000
+
+For details of the formatted scenes, see [here](docs/dataset-format.md)
