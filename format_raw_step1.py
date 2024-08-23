@@ -297,7 +297,7 @@ if __name__ == "__main__":
     parser.add_argument("--work_dir", type=str, help="path to raw_data/<scene>")
     parser.add_argument("--targ_dir", type=str, help="path to temporary directory to save formatted data", default="tmp")
     parser.add_argument("--delta_t", type=none_or_int, default=5000, help="overwrites n_bins if provided, time to split within rgb exposure time")
-    parser.add_argument("--cam_only", type=bool, default=True, help="if true, will process camera only. no events or images will be copied/processed")
+    parser.add_argument("--cam_only", type=bool, default=False, help="if true, will process camera only. no events or images will be copied/processed")
     parser.add_argument("--rel_cam_f", type=str, help="path to rel_cam.json")
     parser.add_argument("--prophesee_cam_f", type=str, help="path to prosphesee intrinsics file")
     args = parser.parse_args()
