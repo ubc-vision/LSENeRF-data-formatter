@@ -138,7 +138,7 @@ def make_eimgs(K, D, n_bins:int, cam_ts=None, ev_f:str=None, img_size=(720, 1280
 
     ev_f: if None, calculate new_K and return 
     """
-    print("startingt to make eimg")
+    print("starting to make eimg")
 
     im_h, im_w = img_size
     cam_ts = cam_ts.reshape(-1, n_bins)
