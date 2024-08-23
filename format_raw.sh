@@ -2,16 +2,16 @@
 ############################################# INPUT #############################################
 
 # path to scene directory downloaded
-WORK_DIR="raw_data/Bag"
+WORK_DIR="lse_raw_data/Dragon Max"
 
 # path to output directory
 OUT_DIR="formatted_data/$(basename $WORK_DIR)"
 
 # path to event camera intrinsics
-PROPHESEE_CAM_F="raw_data/ecam_intrinsics.json"
+PROPHESEE_CAM_F="lse_raw_data/ecam_intrinsics.json"
 
 # path to relative extrinsics between the rgb and event camera
-REL_CAM_F="raw_data/rel_extrinsics.json"
+REL_CAM_F="lse_raw_data/rel_extrinsics.json"
 ############################################# INPUT END ###########################################
 
 TMP_OUT="tmp"
