@@ -11,8 +11,6 @@ import glob
 from nerfies_camera import NerfiesCamera
 import colmap_read_model as read_model
 
-get_img_ids = lambda img_dir : [osp.basename(f).split(".")[0] for f in sorted(glob.glob(osp.join(img_dir, "*.png")))]
-
 class EventBuffer:
     def __init__(self, ev_f) -> None:
         self.ev_f = ev_f
@@ -292,7 +290,7 @@ def make_nerfies_camera(ext_mtx, intr_mtx, dist, img_size):
     """
     R = ext_mtx[:3,:3]
     t = ext_mtx[:3,3]
-    k1, k2, p1, p2 = dist
+    k1, k2, p1, p2 = dist[:4]
     coord = -R.T@t  
     h, w = img_size
 
@@ -313,7 +311,7 @@ def make_nerfies_camera(ext_mtx, intr_mtx, dist, img_size):
     return new_camera
 
 
-def create_and_write_camera_extrinsics(extrinsic_dir, cams, time_stamps, intr_mtx, dist, img_size, scale=None, ret_cam=False, transform=None, n_zeros=6):
+def create_and_write_camera_extrinsics(extrinsic_dir, cams, time_stamps, intr_mtx, dist, img_size, scale=None, ret_cam=False, n_zeros=6):
     """
     create the extrinsics and save it
     scale: float = scale to resize image by; will apply to camera
@@ -325,7 +323,7 @@ def create_and_write_camera_extrinsics(extrinsic_dir, cams, time_stamps, intr_mt
 
     cameras = []
     for i, (ecam,t) in enumerate(zip(cams, time_stamps)):
-        camera = make_nerfies_camera(ecam, intr_mtx, dist, img_size, transform=transform)
+        camera = make_nerfies_camera(ecam, intr_mtx, dist, img_size)
         if scale is not None:
            camera = camera.scale(scale)
 
