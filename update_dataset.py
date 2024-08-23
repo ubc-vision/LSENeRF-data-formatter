@@ -34,7 +34,7 @@ def change_evs_dataset(manager:EcamSceneManager, train_rgb_ts, t_gap=30000):
     }
 
     ori_dataset_f = manager.dataset_json_f
-    if not osp.join(manager.data_dir, "ori_dataset.json"):
+    if not osp.join(manager.data_dir, "ori_dataset.json") and osp.exists(ori_dataset_f):
         shutil.copy(ori_dataset_f, osp.join(manager.data_dir, "ori_dataset.json"))
 
     with open(osp.join(manager.data_dir, "dataset.json"), "w") as f:
