@@ -13,13 +13,13 @@ PROPHESEE_CAM_F="lse_raw_data/ecam_intrinsics.json"
 
 # path to relative extrinsics between the rgb and event camera
 REL_CAM_F="lse_raw_data/rel_extrinsics.json"
+
+# in microseconds; window to create the BIIs in
+DELTA_T=5000 
 ############################################# INPUT END ###########################################
 
 # path to temporary output
 TMP_OUT="tmp"
-
-
-DELTA_T=5000 # in microseconds; None to turn off and use N_BINS instead
 
 
 # Step 1: Format raw data to llff format (intermediate format)
