@@ -27,6 +27,7 @@ We first go through the scene folder. An example is just the `Bag' directory obt
 ```
 Special note:
 - Only len(cam_ts) number of RGB and Event cameras starting from the beginning are inside the event camera filming time. The extra cameras are cameras after the event camera finished filming
+- raw can be converted with utils.raw_to_rgb; see supplemental for the k,b values of each scene
 
 # Extra json files
 We provide two other files for event camera intrinsics and relative extrinsics between the rgb and event camera
