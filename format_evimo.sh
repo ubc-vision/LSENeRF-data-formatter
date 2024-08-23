@@ -17,5 +17,5 @@ python format_evimo.py --rgb_src_dir "$RGB_SRC_DIR" \
                        --out_dir "$OUT_DIR"
 
 
-# update dataset.json
+# generate ecam_set dataset.json
 python update_dataset.py --dataset_dir "$OUT_DIR"
