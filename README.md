@@ -5,8 +5,8 @@ This repo contains the code to format the data in the paper xxx
 For details of the data just download, see [here](docs/scene-details.md)
 
 ## formating LSENeRF dataset
-To format our dataset:
-1. Download a scene from xxx
+To format a scene in our dataset:
+1. Download *ecam_intrinsics.json*, *rel_extrinsics* and a scene from xxx
 2. Fill out the fields in format_raw.sh, the fields details are provided in the comments of the shell script
 3. run the below
 ```bash
@@ -19,7 +19,11 @@ bash format_raw.sh
    1. The NPZ extrinsics overlay is camera transform for camera -> rig
 3. Extract NPZ extrinsics overlay from 2. on top of the NPZ dataset so that *dataset_extrinsics.npz* is available in the dataset scene folders
 4. Fill the neccessary fields in `format_evimo.sh`
-5. Format the dataset with
+5. Format a scene in our dataset with
 ```bash
 bash format_evimo.sh
 ```
+Note that only these EVIMOv2 scenes are supported (see the evimov2_dataset directory)
+- depth_var_1_lr_000000
+- scene7_00_000001
+- scene8_01_000000
