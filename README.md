@@ -28,7 +28,7 @@ bash format_raw.sh
 ```bash
 bash format_evimo.sh
 ```
-Note that only these EVIMOv2 scenes are supported (see the evimov2_dataset directory):
+Note that only these EVIMOv2 scenes are supported (see the ```evimov2_dataset``` directory):
 - depth_var_1_lr_000000
 - scene7_00_000001
 - scene8_01_000000
