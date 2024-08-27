@@ -1,5 +1,5 @@
 # File details
-We provide the details of files we provided. 
+We provide the details of files we provided. For each scenes, the first ~13 seconds are blurry while the rest are clear
 
 # Scene folder
 We first go through the scene folder. An example is just the `Bag' directory obtained after downloading and unzipping. The folder structure follows this:
@@ -27,7 +27,7 @@ We first go through the scene folder. An example is just the `Bag' directory obt
 - st_triggers.txt       # triggers for when camera shutter opens (micro sec)
 ```
 Special note:
-- Only len(cam_ts) number of RGB and Event cameras starting from the beginning are inside the event camera filming time. The extra cameras are cameras after the event camera finished filming
+- For event camera poses, only cameras where cam_ts < 20sec are valid.
 - raw can be converted with utils.raw_to_rgb; see supplemental for the k,b values of each scene
 
 # Extra json files
