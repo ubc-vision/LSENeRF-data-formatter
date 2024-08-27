@@ -16,4 +16,4 @@
 - [Teddy Grass](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Teddy Grass.zip>)
 
 
-For details of the files downloaded, see [here](docs/scene-details.md)
+For details of the files downloaded, see [here](scene-details.md)
