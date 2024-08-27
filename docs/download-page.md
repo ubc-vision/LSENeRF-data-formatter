@@ -14,3 +14,6 @@
 - [Lab](https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Lab.zip)
 - [Presentation Room](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Presentation Room.zip>)
 - [Teddy Grass](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Teddy Grass.zip>)
+
+
+For details of the files downloaded, see [here](docs/scene-details.md)
