@@ -28,9 +28,9 @@ We first go through the scene folder. An example is just the `Bag' directory obt
 ```
 Special note:
 - For event camera poses, only cameras where cam_ts < 20sec are valid.
-- raw images can be converted to RGB with: 
+- Raw images can be converted to RGB with (see supplemental for values of k and b):
 ```python
-utils.raw_to_rgb("raw_image_<number>.raw")
+utils.raw_to_rgb("raw_image_<number>.raw", k=2.2, b=65536)
 ```
 
 # Extra json files
