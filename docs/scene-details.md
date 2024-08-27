@@ -28,7 +28,10 @@ We first go through the scene folder. An example is just the `Bag' directory obt
 ```
 Special note:
 - For event camera poses, only cameras where cam_ts < 20sec are valid.
-- raw can be converted with utils.raw_to_rgb; see supplemental for the k,b values of each scene
+- raw images can be converted to RGB with: 
+```python
+utils.raw_to_rgb("raw_image_<number>.raw")
+```
 
 # Extra json files
 We provide two other files for event camera intrinsics and relative extrinsics between the rgb and event camera
