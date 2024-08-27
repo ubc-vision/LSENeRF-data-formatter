@@ -1,5 +1,5 @@
 # File details
-We provide the details of files we provided. For each scenes, the first ~13 seconds are blurry while the rest are clear
+We provide the details of files we provided. Each scene is ~20 seconds, the first ~13 seconds are blurry while the rest are clear.
 
 # Scene folder
 We first go through the scene folder. An example is just the `Bag' directory obtained after downloading and unzipping. The folder structure follows this:
