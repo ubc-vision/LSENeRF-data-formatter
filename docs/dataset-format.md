@@ -23,8 +23,8 @@ colcam_set
 ecam_set
 - eimgs
     - eimgs_1x.npy      # (n, h, w), preprocessed event images (BIIs)
-- next_camera           # event camera pose at the end of the BII
-- prev_camera           # event camera pose at the start of the BII
+- next_camera           # event camera pose at the end of the BII; same as nerfies
+- prev_camera           # event camera pose at the start of the BII; same as nerfies
 - dataset.json          # same as in nerfies
 - metadata.json         # same as in nerfies
 ```
