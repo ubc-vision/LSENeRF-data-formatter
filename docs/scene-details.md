@@ -43,7 +43,7 @@ This file contains the intrinsics used for the event camera. We use the OpenCV c
     ...
     "image_size": (width, height),
     "camera_matrix":{...
-        "data": 3x3 camera matrix; obtained by reshaping to 3x3
+        "data": flattened 3x3 camera matrix;
     },
     "distortion_coefficients":{
         ...,
@@ -60,7 +60,7 @@ The meaning of the keys are:
 {
     ...
     "M2": (3x3) event camera intrinsics; same as in ecam_intrinsics.json,
-    "dist1": event camera distortion; same as in ecam_intrinsics,
+    "dist2": event camera distortion; same as in ecam_intrinsics,
     "R": relative rotation from RGB camera-> Event camera,
     "T": relative translation from RGB camera -> Event camera
     ...
