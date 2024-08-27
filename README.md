@@ -11,7 +11,7 @@ Make an environment with the packages in *requirements.txt* installed
 
 ## formating LSENeRF dataset
 To format a scene in our dataset:
-1. Download *ecam_intrinsics.json*, *rel_extrinsics* and a scene from xxx
+1. Download *ecam_intrinsics.json*, *rel_extrinsics* and a scene from [here](docs/download-page.md)
 2. Fill out the fields in format_raw.sh, the fields details are provided in the comments of the shell script
 3. run the below
 ```bash
