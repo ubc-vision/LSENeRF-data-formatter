@@ -1,6 +1,8 @@
 # LSENeRF-data-formatter
 This repo contains the code to format the data in the paper [LSENeRF]()
 
+The LSENeRF is available [here](https://github.com/ubc-vision/LSENeRF)
+
 ## Download the dataset
 The dataset can be download [here](docs/download-page.md)
 
