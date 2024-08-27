@@ -14,7 +14,7 @@ PROPHESEE_CAM_F="lse_raw_data/ecam_intrinsics.json"
 # path to relative extrinsics between the rgb and event camera
 REL_CAM_F="lse_raw_data/rel_extrinsics.json"
 
-# in microseconds; window to create the BIIs in
+# in microseconds; window to create the BIIs (event frames) in
 DELTA_T=5000 
 ############################################# INPUT END ###########################################
 
@@ -27,7 +27,7 @@ python format_raw_step1.py --work_dir "$WORK_DIR" \
                            --targ_dir "$TMP_OUT" \
                            --delta_t "$DELTA_T" \
                            --prophesee_cam_f "$PROPHESEE_CAM_F" \
-                            --rel_cam_f "$REL_CAM_F"
+                           --rel_cam_f "$REL_CAM_F"
 
 
 # Step 2: Format llff data to final format
@@ -38,5 +38,6 @@ python format_raw_step2.py --src_dir "$TMP_OUT" \
 python update_dataset.py --dataset_dir "$OUT_DIR"
 
 # step 4: clean up temporary output
-echo removing temporary outputs
 rm -rf "$TMP_OUT"
+
+echo DONE!
