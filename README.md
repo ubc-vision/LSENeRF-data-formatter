@@ -1,8 +1,10 @@
 # LSENeRF-data-formatter
 This repo contains the code to format the data in the paper xxx
 
-## downloaded files details
-For details of the data just download, see [here](docs/scene-details.md)
+## Download the dataset
+The dataset can be download [here](docs/download-page.md)
+
+For details of the files downloaded, see [here](docs/scene-details.md)
 
 ## preliminaries
 Make an environment with the packages in *requirements.txt* installed
