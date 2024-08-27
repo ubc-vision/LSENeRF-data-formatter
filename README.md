@@ -1,5 +1,5 @@
 # LSENeRF-data-formatter
-This repo contains the code to format the data in the paper xxx
+This repo contains the code to format the data in the paper [LSENeRF]()
 
 ## Download the dataset
 The dataset can be download [here](docs/download-page.md)
