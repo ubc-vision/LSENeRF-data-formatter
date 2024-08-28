@@ -1,7 +1,7 @@
 # LSENeRF-data-formatter
 This repo contains the code to format the data in the paper LSENeRF
 
-[Paper](placeholder) |[Method code](https://github.com/ubc-vision/LSENeRF) | [Webpage](https://ubc-vision.github.io/LSENeRF/)
+[Paper](placeholder) | [Webpage](https://ubc-vision.github.io/LSENeRF/) | [Method code](https://github.com/ubc-vision/LSENeRF)
 
 ## Download the dataset
 The dataset can be download [here](docs/download-page.md)
