@@ -1,7 +1,7 @@
 # File details
 We provide the details of files we provided. Each scene is ~20 seconds, the first ~13 seconds are blurry while the rest are clear.
 
-# Scene folder
+### Scene folder
 We first go through the scene folder. An example is just the `Bag' directory obtained after downloading and unzipping. The folder structure follows this:
 ```
 <scene>
@@ -33,7 +33,7 @@ Special note:
 utils.raw_to_rgb("raw_image_<number>.raw", k=2.2, b=65536)
 ```
 
-# Extra json files
+### Extra json files
 We provide two other files for event camera intrinsics and relative extrinsics between the rgb and event camera
 - ecam_intrinsics.json
 
@@ -78,8 +78,44 @@ $$T_{evs} = R \cdot T_{rgb} + T \cdot s$$
 
 $R_{xxx}, T_{xxx}$ are the rotation and translation for the respective cameras. $s$ is a scaler in *colmap_scale.txt*
 
-# Camera intrinsics reminder
+### Camera intrinsics reminder
 The event camera intrinsics can be can be found in:
 - ecam_intrinsics.json
 
-For RGB camera, the intrinsics are inside the `<scene>/<scene>_recon/sparse/0/camera.bin` readable with colmap_read_model.read_cameras_binary.
+For RGB camera, the intrinsics are inside the `<scene>/<scene>_recon/sparse/0/camera.bin` readable with `colmap_read_model.read_cameras_binary`.
+
+# Formatted dataset details
+we provide the details for each of the files in the formatted dataset. Our dataset format is very similar to nerfies
+
+After formatting, the scene structure will look like:
+```
+<scene>
+- colcam_set  # rgb camera data
+- ecam_set    # event camera data
+```
+
+### colcam_set details
+```
+colcam_set
+- cameras         
+    - 000000.json # camera jsons same as the nerfies format with an extra "t". "t" is in microsec
+    ...
+- rgb             # the images
+- dataset.json    # same as in nerfies
+- metadata.json   # same as in nerfies
+
+```
+
+### ecam_set details
+```
+ecam_set
+- eimgs
+    - eimgs_1x.npy      # (n, h, w), preprocessed event images (BIIs)
+- next_camera           # event camera pose at the end of the BII; same as nerfies
+    - 000000.json
+    ...
+- prev_camera           # event camera pose at the start of the BII; same as nerfies
+    - 000000.json
+    ...
+- dataset.json          # same as in nerfies
+- metadata.json         # same as in nerfies
