@@ -53,7 +53,7 @@ This file contains the intrinsics used for the event camera. We use the OpenCV c
 }
 ```
 The relative extrinsics are provided in:
-- rel_extrinsics.json
+- **rel_extrinsics.json**
 
 The meaning of the keys are:
 ```
@@ -80,7 +80,7 @@ $R_{xxx}, T_{xxx}$ are the rotation and translation for the respective cameras. 
 
 ### Camera intrinsics reminder
 The event camera intrinsics can be can be found in:
-- ecam_intrinsics.json
+- **ecam_intrinsics.json**
 
 For RGB camera, the intrinsics are inside the `<scene>/<scene>_recon/sparse/0/camera.bin` readable with `colmap_read_model.read_cameras_binary`.
 
