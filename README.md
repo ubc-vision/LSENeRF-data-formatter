@@ -4,6 +4,7 @@ This repo contains the code to format the data in the paper LSENeRF
 [Paper](placeholder) | [Webpage](https://ubc-vision.github.io/LSENeRF/) | [Method code](https://github.com/ubc-vision/LSENeRF)
 
 ## Download the dataset
+**For details of the downloaded files and formatted data see [here](docs/scene-details.md)**
 #### Mandatory files
 - [ecam_intrinsics.json](https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/ecam_intrinsics.json)
 - [rel_extrinsics.json](https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/rel_extrinsics.json)
@@ -16,8 +17,6 @@ This repo contains the code to format the data in the paper LSENeRF
 | [Bicycle](https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Bicycle.zip) | [Lab](https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Lab.zip) |
 | [Engineer Building](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Engineer Building.zip>) | [Presentation Room](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Presentation Room.zip>) |
 | [House](https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/House.zip) | [Teddy Grass](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Teddy Grass.zip>) |
-
-**For details of the downloaded files and formatted data see [here](docs/scene-details.md)**
 
 ## Preliminaries
 Make an environment with the packages in *requirements.txt* installed
