@@ -33,7 +33,7 @@ Special note:
 utils.raw_to_rgb("raw_image_<number>.raw", k=2.2, b=65536)
 ```
 
-### Extra json files
+### Mandatory json files
 We provide two other files for event camera intrinsics and relative extrinsics between the rgb and event camera
 - ecam_intrinsics.json
 
