@@ -17,7 +17,7 @@ This repo contains the code to format the data in the paper LSENeRF
 | [Engineer Building](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Engineer Building.zip>) | [Presentation Room](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Presentation Room.zip>) |
 | [House](https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/House.zip) | [Teddy Grass](<https://www.cs.ubc.ca/research/kmyi_data/files/2024/LSENeRF/Teddy Grass.zip>) |
 
-For details of the downloaded files and formatted data see [here](docs/scene-details.md)
+**For details of the downloaded files and formatted data see [here](docs/scene-details.md)**
 
 ## Preliminaries
 Make an environment with the packages in *requirements.txt* installed
